@@ -5,13 +5,13 @@ files:
     destination: /tmp/codedeploy-deployment-staging-area/
 hooks:
   ApplicationStop:
-    - location: scripts/stop_application
+    - location: scripts/stop_tomcat7
       timeout: 300
   BeforeInstall:
     - location: scripts/install_dependencies
       timeout: 300
   ApplicationStart:
-    - location: scripts/start_application
+    - location: scripts/start_tomcat7
       timeout: 300
   ValidateService:
     - location: scripts/basic_health_check.sh
