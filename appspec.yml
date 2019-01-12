@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: /target/bodgeit.war
+  - source: /build/bodgeit.war
     destination: /tmp/codedeploy-deployment-staging-area/
 hooks:
   ApplicationStop:
