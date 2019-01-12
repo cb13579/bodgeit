@@ -13,7 +13,6 @@ hooks:
     - location: scripts/install_dependencies
       timeout: 300
   ApplicationStart:
-    - location: scripts/write_codedeploy_config.sh
     - location: scripts/start_application
       timeout: 300
   ValidateService:
