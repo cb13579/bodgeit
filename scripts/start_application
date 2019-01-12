@@ -11,6 +11,7 @@ TEMP_STAGING_DIR='/tmp/codedeploy-deployment-staging-area'
 WAR_STAGED_LOCATION="$TEMP_STAGING_DIR/bodgeit.war"
 HTTP_PORT_CONFIG_XSL_LOCATION="$TEMP_STAGING_DIR/configure_http_port.xsl"
 
+echo "start application."
 # In Tomcat, ROOT.war maps to the server root
 if [[ "$DEPLOY_TO_ROOT" = 'true' ]]; then
     CONTEXT_PATH='ROOT'
@@ -28,8 +29,10 @@ fi
 cp $WAR_STAGED_LOCATION $CATALINA_HOME/webapps/$CONTEXT_PATH.war
 
 # Configure the Tomcat server HTTP connector
+echo "install xslt."
 { which xsltproc; } || { yum install xsltproc; } || { apt-get install xsltproc; }
 cp $CATALINA_HOME/conf/server.xml $CATALINA_HOME/conf/server.xml.bak
+echo "change server.xml."
 xsltproc $HTTP_PORT_CONFIG_XSL_LOCATION $CATALINA_HOME/conf/server.xml.bak > $CATALINA_HOME/conf/server.xml
-
+echo "changed server.xml."
 service tomcat7 start
