@@ -3,8 +3,6 @@ os: linux
 files:
   - source: /target/bodgeit.war
     destination: /tmp/codedeploy-deployment-staging-area/
-  - source: /scripts/configure_http_port.xsl
-    destination: /tmp/codedeploy-deployment-staging-area/
 hooks:
   ApplicationStop:
     - location: scripts/stop_application
